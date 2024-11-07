@@ -37,6 +37,8 @@ def scrape_developers():
                 if login:
                     login = login.inner_text()
 
+                # section = item.query_selector('//div[2]/div/div[2]/div/article')
+
                 repo_url = item.query_selector('//div[2]/div/div[2]/div/article/h1/a')
 
                 if repo_url:
@@ -51,12 +53,18 @@ def scrape_developers():
 
                 if description:
                     description = description.inner_text()
+                
+                dev_at_company = item.query_selector('//div[2]/div/div[2]/div/p/span[2]')
+                    
+                if dev_at_company:
+                    dev_at_company = dev_at_company.inner_text()
 
                 data.append({
-                    "avatar": avatar_src,
+                    "avatar_url": avatar_src,
                     "name": name,
                     "login": login,
-                    "html_url": "https://github.com/" + url,
+                    "html_url": "https://github.com" + url,
+                    "dev_at_company": dev_at_company,
                     "popular_repo": {
                         "title": repository,
                         "repo_url": repo_url,
@@ -65,12 +73,12 @@ def scrape_developers():
                 })
 
             browser.close()
-
-            data = json.dumps(data, indent=2)
-            print(data)
-
+            # print(data)
             return data
 
     except Exception as e:
         print(f"An unexcepted error occured: {e}")
         return []
+    
+
+# scrape_developers()

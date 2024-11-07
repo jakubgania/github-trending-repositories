@@ -3,3 +3,6 @@ venv
 venv/
 
 __pycache__
+
+developers.json
+repositories.json
