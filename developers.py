@@ -1,6 +1,5 @@
 from playwright.sync_api import sync_playwright
 import time
-import json
 
 def scrape_developers():
     data = []
@@ -73,7 +72,7 @@ def scrape_developers():
                 })
 
             browser.close()
-            # print(data)
+
             return data
 
     except Exception as e:

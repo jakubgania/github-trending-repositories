@@ -19,15 +19,9 @@ def load_repositories_data():
     with open("repositories.json", "r") as f:
         return json.load(f)
 
-# with open("repositories.json", "r") as f:
-#     repositories_data = json.load(f)
-
 def load_developers_data():
     with open("developers.json", "r") as f:
         return json.load(f)
-
-# with open("developers.json", "r") as f:
-#     developers_data = json.load(f)
 
 @app.get("/trending-repositories")
 def get_trending_repositories():

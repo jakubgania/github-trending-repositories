@@ -1,6 +1,5 @@
 from playwright.sync_api import sync_playwright
 import time
-import json
 import re
 
 def scrape_repositories():
@@ -72,7 +71,6 @@ def scrape_repositories():
                     stars_today = item.query_selector('//div[2]/span[3]').inner_text()
                 match = re.search(r'(\d+)', stars_today)
                 stars_today = match.group(1)
-                # stars_today = "0"
 
                 data.append({
                     "title": title.lstrip(),
@@ -87,7 +85,7 @@ def scrape_repositories():
                 })
                 
             browser.close()
-            print(data)
+
             return data
 
     except Exception as e:

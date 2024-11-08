@@ -13,8 +13,6 @@ RUN /app/venv/bin/pip install -r requirements.txt
 
 RUN /app/venv/bin/playwright install --with-deps chromium firefox webkit
 
-# RUN echo "*/1 * * * * /app/venv/bin/python3.12 /app/scrape.py >> /var/log/cron.log 2>&1" > /etc/cron.d/scrape-cron
-# RUN echo */1 * * * * /app/venv/bin/python3.12 /app/scrape.py >/dev/null 2>&1 > /etc/cron.d/scrape-cron
 RUN echo "*/2 * * * * /app/venv/bin/python3.12 /app/scrape.py >> /var/log/cron.log 2>&1" > /etc/cron.d/scrape-cron
 # COPY crontab /etc/cron.d/scrape-cron
 
