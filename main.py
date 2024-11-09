@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 # from contextlib import asynccontextmanager
-from scrape import run
+# from scrape import run
 import json
-# import os
+# import aiofiles
 
 # @asynccontextmanager
 # async def lifespan(app: FastAPI):
@@ -22,6 +22,10 @@ def load_repositories_data():
 def load_developers_data():
     with open("developers.json", "r") as f:
         return json.load(f)
+    
+def load_topics_data():
+    with open("topics.json", "r") as f:
+        return json.load(f)
 
 @app.get("/trending-repositories")
 def get_trending_repositories():
@@ -32,3 +36,8 @@ def get_trending_repositories():
 def get_trending_developers():
     developers_data = load_developers_data()
     return JSONResponse(content=developers_data, status_code=200)
+
+@app.get("/topics")
+def get_topics():
+    topics_data = load_topics_data()
+    return JSONResponse(content=topics_data, status_code=200)
